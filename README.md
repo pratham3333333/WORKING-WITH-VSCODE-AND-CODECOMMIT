@@ -1,7 +1,3 @@
-### GitHub Repository Description
-
----
-
 # 🌟 Responsive E-Commerce Website with Docker & EKS 🚀
 
 ## Overview
@@ -16,6 +12,8 @@ Transform your e-commerce vision into reality! This project demonstrates how to 
 - 🐳 **Docker**: Containerize your application
 - 🛠️ **AWS EKS**: Scale and manage your deployment
 - 🌍 **Load Balancer**: Publicly accessible website
+
+![KUBERNETES-PRATHAM](https://github.com/user-attachments/assets/ff9582e8-30ca-46a9-be70-12a36f2b2f49)
 
 ## Architecture Flow
 
