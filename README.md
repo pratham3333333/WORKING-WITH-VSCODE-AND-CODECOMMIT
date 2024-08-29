@@ -1,90 +1,129 @@
-# 🌟 Responsive E-Commerce Website with Docker & EKS 🚀
+# 🚀 Creating and Working with Two Branches in VS Code & AWS CodeCommit 🎨
 
 ## Overview
 
-Transform your e-commerce vision into reality! This project demonstrates how to create a responsive e-commerce website using Amazon Linux, Docker, and Kubernetes, with seamless integration into AWS services such as S3, ECR, and EKS. Deploy your site on an EKS cluster with NGINX and make it accessible via a Load Balancer. 🌐
+This guide provides step-by-step instructions on how to create and work with multiple branches in a Git repository using Visual Studio Code (VS Code) and AWS CodeCommit. You'll learn how to manage your code changes effectively, enabling better version control and collaboration. 🔄
+
+
+![Animation](https://github.com/user-attachments/assets/b13e6ce9-a208-404e-842c-5377a379f904)
 
 ## Objective
 
-✨ **Build & Deploy** a fully functional e-commerce website featuring:
-- 📱 **Responsive Design**: Perfect for all devices
-- 🖼️ **AWS S3**: Store and serve your images
-- 🐳 **Docker**: Containerize your application
-- 🛠️ **AWS EKS**: Scale and manage your deployment
-- 🌍 **Load Balancer**: Publicly accessible website
+🎯 **Learn & Apply** Git branching techniques with:
+- 🛠️ **VS Code**: Work seamlessly with your branches
+- 📁 **AWS CodeCommit**: Manage your repository and branches on AWS
+- 👨‍💻 **Git**: Master the basics of branching and merging
 
-![KUBERNETES-PRATHAM](https://github.com/user-attachments/assets/ff9582e8-30ca-46a9-be70-12a36f2b2f49)
+## Prerequisites
 
-## Architecture Flow
+Before starting, ensure you have the following installed and configured:
+- **Visual Studio Code (VS Code)**: [Download VS Code](https://code.visualstudio.com/)
+- **Git**: [Install Git](https://github.com/git-for-windows/git/releases/download/v2.46.0.windows.1/Git-2.46.0-64-bit.exe)
+- **AWS CLI**: [Install AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi)
+- **AWS CodeCommit Repository**: Already created in your AWS account
 
-1. **Amazon Linux**: 
-   - Set up Docker
-   - Create a project directory with `index.html` and other assets 🖥️
+## Steps to Follow
 
-2. **AWS S3**: 
-   - Create an S3 bucket
-   - Upload images and update `index.html` with S3 URLs 🏞️
+### 1. Clone the AWS CodeCommit Repository in VS Code
 
-3. **Docker**: 
-   - Build a custom Docker image
-   - Push the image to Amazon ECR 📦
-
-4. **Amazon ECR**: 
-   - Manage and store your Docker image in ECR 🗂️
-
-5. **Amazon EKS**: 
-   - Deploy the Docker image on an EKS cluster with EC2 instances 🌟
-
-6. **NGINX**: 
-   - Serve the website using NGINX deployed via Kubernetes 🚀
-
-7. **Load Balancer**: 
-   - Expose the website and access it through a public URL 🌐
-
-## Detailed Steps
-
-### 1. Setting Up the Project on Amazon Linux
-
-- Launch an EC2 instance with Amazon Linux
-- Install Docker and tools
-- Create a project directory:
+- Open VS Code and launch the terminal (`Ctrl + `` or View > Terminal`).
+- Clone the repository using the command:
   ```bash
-  mkdir ~/PROJECT
-  cd ~/PROJECT
+  git clone https://git-codecommit.<region>.amazonaws.com/v1/repos/<repository-name>
   ```
-- Add content to `index.html` and link images to S3 URLs 🖼️
-
-### 2. Uploading Images to S3
-
-- Create an S3 bucket via the AWS Console
-- Upload your images
-- Update `index.html` with the S3 URLs 📂
-
-### 3. Creating a Dockerfile
-
-- Create a `Dockerfile` in your project directory
-- Build the Docker image:
+- Navigate to the repository directory:
   ```bash
-  docker build -t my-website .
-  ```
-- Test the container with a public IP 🧪
-
-### 4. Pushing the Docker Image to Amazon ECR
-
-- Authenticate Docker to ECR:
-  ```bash
-  aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account_id>.dkr.ecr.<region>.amazonaws.com
-  ```
-- Create a repository in ECR
-- Tag and push your Docker image:
-  ```bash
-  docker tag my-website:latest <account_id>.dkr.ecr.<region>.amazonaws.com/my-website:latest
-  docker push <account_id>.dkr.ecr.<region>.amazonaws.com/my-website:latest
+  cd <repository-name>
   ```
 
-## Deployment
+### 2. Create the First Branch
 
-- Deploy the Docker image on Amazon EKS
-- Use NGINX for web serving via Kubernetes
-- Access your website through a Load Balancer 🌐
+- Create and switch to a new branch named `developer1`:
+  ```bash
+  git checkout -b developer1
+  ```
+- You're now working on the `developer1` branch. 🎨
+
+### 3. Make Changes and Commit to the First Branch
+
+- Edit your files in VS Code.
+- Save your changes (`Ctrl + S`).
+- Stage the changes:
+  ```bash
+  git add .
+  ```
+- Commit the changes:
+  ```bash
+  git commit -m "Add changes in developer1"
+  ```
+
+### 4. Push the First Branch to AWS CodeCommit
+
+- Push the `developer1` branch to AWS CodeCommit:
+  ```bash
+  git push origin developer1
+  ```
+
+### 5. Create the Second Branch
+
+- Switch back to the `master` branch:
+  ```bash
+  git checkout master
+  ```
+- Create and switch to a new branch named `developer2`:
+  ```bash
+  git checkout -b developer2
+  ```
+
+### 6. Make Changes and Commit to the Second Branch
+
+- Make different changes for the `developer2` branch in VS Code.
+- Save your changes (`Ctrl + S`).
+- Stage the changes:
+  ```bash
+  git add .
+  ```
+- Commit the changes:
+  ```bash
+  git commit -m "developer2 code"
+  ```
+
+### 7. Push the Second Branch to AWS CodeCommit
+
+- Push the `developer2` branch to AWS CodeCommit:
+  ```bash
+  git push origin developer2
+  ```
+
+### 8. Check the Current Working Branch
+
+- Verify the current branch in VS Code by looking at the status bar at the bottom left.
+- Alternatively, run the command in the terminal:
+  ```bash
+  git branch
+  ```
+
+### 9. Switch Between Branches
+
+- To switch between `developer1` and `developer2` branches, use:
+  ```bash
+  git checkout developer1
+  git checkout developer2
+  ```
+
+### 10. Merge the Branches (Optional)
+
+- If you want to merge `developer1` into `master`:
+  ```bash
+  git checkout master
+  git merge developer1
+  ```
+- Push the merged changes to AWS CodeCommit:
+  ```bash
+  git push origin master
+  ```
+
+## Conclusion
+
+By following this guide, you can efficiently manage and work with multiple branches in VS Code while leveraging AWS CodeCommit for version control. This process is crucial for maintaining a clean and organized codebase, enhancing collaboration, and ensuring smooth project development. 🌟
 
